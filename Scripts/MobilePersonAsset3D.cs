@@ -10,9 +10,8 @@ namespace Mod3D
 {
     public sealed class MobilePersonAsset3D : MobilePersonAsset
     {
-        public ThirdPersonCharacter character { get; private set; } // the character we are controlling
+        public NonPlayerCharacterController character { get; private set; } // the character we are controlling
         private GameObject go;
-        private MobileDirection LastDirection;
 
         public MobilePersonMotor motor { get; private set; }
 
@@ -58,100 +57,18 @@ namespace Mod3D
         private void Update()
         {
             if (character == null)
-                character = GetComponentInChildren<ThirdPersonCharacter>();
+                character = GetComponentInChildren<NonPlayerCharacterController>();
 
             if (character == null) return;
 
             if (IsIdle)
-                character.Move(Vector3.zero, 0f, 0f, false, false);
+            {
+                character.Stop();
+            }
             else
             {
-                var direction = Vector3.zero;
-                var turn = 0f;
-                switch (motor.CurrentDirection)
-                {
-                    //Vector3(float x, float y, float z)
-                    case MobileDirection.North:
-                        direction = Vector3.left;
-                        break;
-                    case MobileDirection.South:
-                        direction = Vector3.right;
-                        break;
-                    case MobileDirection.East:
-                        direction = Vector3.forward;
-                        break;
-                    case MobileDirection.West:
-                        direction = Vector3.back;
-                        break;
-                }
-
-                switch (LastDirection)
-                {
-                    //180 turns
-                    case MobileDirection.South:
-                        switch (motor.CurrentDirection)
-                        {
-                            case MobileDirection.North:
-                                turn = 1f;
-                                break;
-                            case MobileDirection.West:
-                                turn = 0.5f;
-                                break;
-                            case MobileDirection.East:
-                                turn = -0.5f;
-                                break;
-                        }
-                        break;
-                    case MobileDirection.North:
-                        switch (motor.CurrentDirection)
-                        {
-                            case MobileDirection.South:
-                                turn = 1f;
-                                break;
-                            case MobileDirection.West:
-                                turn = -0.5f;
-                                break;
-                            case MobileDirection.East:
-                                turn = 0.5f;
-                                break;
-                        }
-                        break;
-                    case MobileDirection.East:
-                        switch (motor.CurrentDirection)
-                        {
-                            case MobileDirection.West:
-                                turn = 1f;
-                                break;
-                            case MobileDirection.North:
-                                turn = -0.5f;
-                                break;
-                            case MobileDirection.South:
-                                turn = 0.5f;
-                                break;
-                        }
-                        break;
-                    case MobileDirection.West:
-                        switch (motor.CurrentDirection)
-                        {
-                            case MobileDirection.East:
-                                turn = 1f;
-                                break;
-                            case MobileDirection.South:
-                                turn = -0.5f;
-                                break;
-                            case MobileDirection.North:
-                                turn = 0.5f;
-                                break;
-                        }
-                        break;
-                }
-                
-                var target = direction;// * motor.DistanceToTarget;
-                //turn
-                character.Move(target, 0f, 0.5f, false, false);
+                character.Move();
             }
-
-            LastDirection = motor.CurrentDirection;
         }
     }
 }
