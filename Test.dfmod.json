@@ -1,0 +1,16 @@
+{
+    "ModTitle": "DF3D",
+    "DFUnity_Version": "0.11.4",
+    "GUID": "06b6d008-7f4f-423f-8a9d-69db2f6d05b9",
+    "Files": [
+        "Assets/Game/Mods/DF3D/Scripts/ThirdPersonCharacter.cs",
+        "Assets/Game/Mods/DF3D/Scripts/MobilePersonAsset.prefab",
+        "Assets/Game/Mods/DF3D/Scripts/MobilePersonAsset3D.cs",
+        "Assets/Game/Mods/DF3D/Scripts/ModLoader.prefab",
+        "Assets/Game/Mods/DF3D/Scripts/ModLoader.cs",
+        "Assets/Game/Mods/DF3D/Assets/Models/391_MONC.fbx",
+        "Assets/Game/Mods/DF3D/Assets/Models/391.fbx",
+        "Assets/Game/Mods/DF3D/Assets/Prefabs/DefaultMale.prefab",
+        "Assets/Game/Mods/DF3D/Assets/Prefabs/DefaultFemale.prefab"
+    ]
+}
